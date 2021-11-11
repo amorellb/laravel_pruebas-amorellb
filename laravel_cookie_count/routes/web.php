@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CookieController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,5 @@ Route::get('/', function () {
 Route::get('/cookie-count', function () {
     return view('times_visited');
 });
+
+Route::get('/cookie-count/{name}', [CookieController::class, "cookie_counter"]);
