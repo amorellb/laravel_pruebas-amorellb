@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    echo 'Visit /cookie-count';
+    echo 'Visit /cookie-count and reload the page any times';
 //    return view('welcome');
 });
 
