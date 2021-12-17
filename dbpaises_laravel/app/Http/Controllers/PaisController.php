@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pais;
 use Illuminate\Http\Request;
 
-class Pais extends Controller
+class PaisController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class Pais extends Controller
      */
     public function index()
     {
-        //
+        $data = Pais::all();
+        return view('pais', compact('data'));
     }
 
     /**
@@ -40,10 +42,10 @@ class Pais extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Pais $pais)
     {
         //
     }
@@ -51,10 +53,10 @@ class Pais extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Pais $pais)
     {
         //
     }
@@ -63,10 +65,10 @@ class Pais extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Pais $pais)
     {
         //
     }
@@ -74,10 +76,10 @@ class Pais extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pais $pais)
     {
         //
     }

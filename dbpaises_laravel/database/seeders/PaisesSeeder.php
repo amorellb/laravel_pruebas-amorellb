@@ -14,9 +14,12 @@ class PaisesSeeder extends Seeder
      */
     public function run()
     {
+        // Reading sql file
         // $path = public_path('sql/file.sql');
         // $sql = file_get_contents($path);
         // DB::unprepared($sql);
+
+        // With a seeder
         $paises = [
             ['codigoISO3' => 'AND', 'codigoISO2' => 'AD', 'cod_numerico' => '20', 'nombre' => 'Andorra'],
             ['codigoISO3' => 'ARE', 'codigoISO2' => 'AE', 'cod_numerico' => '784', 'nombre' => 'Emiratos Árabes Unidos'],
