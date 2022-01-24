@@ -14,11 +14,23 @@ class CreateAgendaTable extends Migration
     public function up()
     {
         Schema::create('agenda', function (Blueprint $table) {
-            $table->char('firstname', 30)->primary();
-            $table->char('lastname', 30);
-            $table->char('contact_number', 30);
+            $table->id();
 
-            $table->unique('contact_number');
+            $table->char('name', 30)->unique();
+            $table->string('slug');
+            $table->char('email', 30)->nullable()->unique();
+            $table->char('phone', 30)->unique();
+            $table->char('address', 30)->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::table('agenda', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->nullable()->after('id');
+
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
         });
     }
 
