@@ -15,6 +15,8 @@ class ContactsController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Contacts::class);
+
         $contacts = Contacts::all();
         return view('contacts.index', compact('contacts'));
     }
@@ -26,6 +28,8 @@ class ContactsController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Contacts::class);
+
         return view('contacts.create');
     }
 
@@ -62,6 +66,8 @@ class ContactsController extends Controller
      */
     public function show(Contacts $contact)
     {
+        $this->authorize('view', $contact);
+
         return view('contacts.show', compact('contact'));
     }
 
@@ -73,6 +79,8 @@ class ContactsController extends Controller
      */
     public function edit(Contacts $contact)
     {
+        $this->authorize('update', $contact);
+
         return view('contacts.edit', compact('contact'));
     }
 
@@ -85,6 +93,8 @@ class ContactsController extends Controller
      */
     public function update(StoreContacts $request, Contacts $contact)
     {
+        $this->authorize('update', $contact);
+
         $contact->update($request->all());
         return redirect()->route('contacts.index');
     }
@@ -97,6 +107,8 @@ class ContactsController extends Controller
      */
     public function destroy(Contacts $contact)
     {
+        $this->authorize('delete', $contact);
+
         $contact->delete();
         return redirect()->route('contacts.index');
     }
