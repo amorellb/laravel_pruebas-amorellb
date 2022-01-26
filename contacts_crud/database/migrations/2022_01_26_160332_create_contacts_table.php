@@ -27,6 +27,16 @@ class CreateContactsTable extends Migration
             $table->string('address')->nullable();                // type textarea
             $table->boolean('job_contact')->default(false); // type radiobutton
         });
+
+        Schema::table('contacts', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')
+                ->nullable()
+                ->after('id');
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
+        });
     }
 
     /**
