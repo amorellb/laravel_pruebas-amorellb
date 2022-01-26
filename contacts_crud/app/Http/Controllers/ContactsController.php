@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreContacts;
 use App\Models\Contacts;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ContactsController extends Controller
@@ -35,7 +35,7 @@ class ContactsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreContacts $request)
     {
         $request['slug'] = Str::slug($request->name, '-');
 
@@ -83,7 +83,7 @@ class ContactsController extends Controller
      * @param \App\Models\Contacts $contacts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contacts $contact)
+    public function update(StoreContacts $request, Contacts $contact)
     {
         $contact->update($request->all());
         return redirect()->route('contacts.index');
