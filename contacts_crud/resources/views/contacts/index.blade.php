@@ -57,7 +57,7 @@
                                 <td class="p-2 whitespace-nowrap">{{ $contact->address }}</td>
                                 <td class="p-2 whitespace-nowrap">{{ $contact->job_contact }}</td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <form action="{{ route('contacts.destroy',$contact) }}" method="POST">
+                                    <form action="{{ route('contacts.destroy', $contact) }}" method="POST">
                                         @auth
                                             @can('view', $contact)
                                                 <a class="text-blue-400 no-underline border-solid border-2 border-blue-400 rounded p-1 px-3 ml-5 hover:bg-blue-400 hover:text-white"

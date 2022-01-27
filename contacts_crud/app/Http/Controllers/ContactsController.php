@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ContactsController extends Controller
@@ -24,7 +25,10 @@ class ContactsController extends Controller
     {
         $this->authorize('viewAny', Contacts::class);
 
-        $contacts = Contacts::all();
+//        QueryBuilder
+//        $query = DB::table('contacts')->where('user_id', Auth::id())->get();
+//        $contacts = $query->all();
+        $contacts = Contacts::where('user_id', Auth::id())->latest()->paginate(5);
         return view('contacts.index', compact('contacts'));
     }
 
