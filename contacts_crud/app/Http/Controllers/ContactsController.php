@@ -25,10 +25,10 @@ class ContactsController extends Controller
     {
         $this->authorize('viewAny', Contacts::class);
 
-//        QueryBuilder
+//        QueryBuilder (no funciona con el slug)
 //        $query = DB::table('contacts')->where('user_id', Auth::id())->get();
 //        $contacts = $query->all();
-        $contacts = Contacts::where('user_id', Auth::id())->latest()->paginate(5);
+        $contacts = Contacts::where('user_id', Auth::id())->get();
         return view('contacts.index', compact('contacts'));
     }
 
