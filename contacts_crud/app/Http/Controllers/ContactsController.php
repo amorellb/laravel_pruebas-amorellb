@@ -25,7 +25,6 @@ class ContactsController extends Controller
     public function index()
     {
         if (Gate::allows('viewAll')) {
-            //$this->authorize('viewAll', Contact::class);
             $contacts = Contact::with('user')->orderBy('name')->get();
             return view('contacts.index', compact('contacts'));
         }
