@@ -49,6 +49,9 @@
             <br>
             <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio" name="job_contact_false" value="false" checked="checked"/> False
         </label><br>
+        <label for="terms">
+            <input type="checkbox" id="terms" name="terms"> Accept terms and conditions.
+        </label><br>
         <button
             class="text-green-400 no-underline border-solid border-2 border-green-400 rounded p-1 px-5 ml-5 mt-5 hover:bg-green- 400 hover:text-white"
             type="submit" name="add">➕ Add Contact
