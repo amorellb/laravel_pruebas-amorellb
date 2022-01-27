@@ -32,11 +32,11 @@
         <br>
         <label for="country">Country: </label>
         <select class="border-2 border-solid border-gray-100 rounded-full px-2" name="country" id="country">
-            <option value="Spain" @if (old('country') === 'spain') selected @endif>Spain</option>
-            <option value="England" @if (old('country') === 'england') selected @endif>England</option>
-            <option value="Italy" @if (old('country') === 'italy') selected @endif>Italy</option>
-            <option value="Germany" @if (old('country') === 'germany') selected @endif>Germany</option>
-            <option value="France" @if (old('country') === 'france') selected @endif>France</option>
+            <option value="England" @if (old('country') === 'England') selected @endif>England</option>
+            <option value="Spain" @if (old('country') === 'Spain') selected @endif>Spain</option>
+            <option value="Italy" @if (old('country') === 'Italy') selected @endif>Italy</option>
+            <option value="Germany" @if (old('country') === 'Germany') selected @endif>Germany</option>
+            <option value="France" @if (old('country') === 'France') selected @endif>France</option>
         </select>
         <br>
         <label for="address"> Contact address:
