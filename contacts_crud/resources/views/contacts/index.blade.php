@@ -7,7 +7,7 @@
                 <h2 class="text-xl">Contacts</h2>
             </div>
             @auth
-                @can('create', \App\Models\Contacts::class)
+                @can('create', \App\Models\Contact::class)
                     <div class="mt-5">
                         <a class="text-green-400 no-underline border-solid border-2 border-green-400 rounded p-1 ml-5 hover:bg-green-400 hover:text-white"
                            href="{{ route('contacts.create') }}">➕ Add Contact</a>
@@ -24,7 +24,7 @@
                         <thead class="text-xs font-semibold uppercase text-gray-400">
                         <tr>
                             @auth
-                                @can('viewAll', \App\Models\Contacts::class)
+                                @can('viewAll', \App\Models\Contact::class)
                                     <th class="p-2 whitespace-nowrap">
                                         <div class="font-semibold text-left">User Name</div>
                                     </th>
@@ -54,10 +54,11 @@
                         </tr>
                         </thead>
                         <tbody class="text-sm divide-y divide-gray-100">
+
                         @foreach ($contacts as $contact)
                             <tr>
                                 @auth
-                                    @can('viewAll', \App\Models\Contacts::class)
+                                    @can('viewAll', \App\Models\Contact::class)
                                         <td class="p-2 whitespace-nowrap">{{ $contact->user->name }}</td>
                                     @endcan
                                 @endauth

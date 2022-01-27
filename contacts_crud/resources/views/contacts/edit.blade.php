@@ -1,7 +1,8 @@
 @include('layouts.plantilla')
 
-<main>
-    <h2 class="text-xl">Editar la información de contacto de {{$contact->name}}</h2>
+<main class="mt-5">
+    <div class="w-full max-w-xl mx-auto bg-white shadow-lg rounded border border-gray-200">
+    <h2 class="text-xl m-5">Editar la información de contacto de {{$contact->name}}</h2>
     <form class="m-5" method="POST" enctype="multipart/form-data"
           action="{{ route('contacts.update', $contact) }}">
 
@@ -60,11 +61,15 @@
         </label>
         <br>
         <br>
-        <label for="job_contact"> Job contact?:
+        <label for="job_contact_true"> Job contact?:
             <br>
-            <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio" name="job_contact_true" value="true" checked/> True
+            <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio"
+                   name="job_contact_yes" value="yes" checked/> Yes
+        </label>
+        <label for="job_contact_false">
             <br>
-            <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio" name="job_contact_false" value="false" checked="checked"/> False
+            <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio"
+                   name="job_contact_yes" value="no" checked/> No
         </label>
         <br>
         <button
@@ -72,4 +77,5 @@
             type="submit" name="add">📝 Edit
         </button>
     </form>
+    </div>
 </main>

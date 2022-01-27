@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Contacts;
+use App\Models\Contact;
+use App\Models\User;
 use App\Policies\ContactsPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -16,7 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
-        Contacts::class => ContactsPolicy::class
+        Contact::class => ContactsPolicy::class
     ];
 
     /**
@@ -28,6 +29,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('viewAll', function (User $user) {
+            return $user->role === 'admin';
+        });
     }
 }

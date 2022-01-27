@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Contacts;
+use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -15,11 +15,6 @@ class ContactsPolicy
         if ($user->role === 'admin') {
             return true;
         }
-    }
-
-    public function viewAll(User $user): bool
-    {
-        return $user->role === 'admin';
     }
 
     /**
@@ -37,10 +32,10 @@ class ContactsPolicy
      * Determine whether the user can view the model.
      *
      * @param User $user
-     * @param Contacts $contacts
+     * @param Contact $contacts
      * @return bool
      */
-    public function view(User $user, Contacts $contacts): bool
+    public function view(User $user, Contact $contacts): bool
     {
         return $user->role === 'user' && $user->id === $contacts->user_id;
     }
@@ -60,10 +55,10 @@ class ContactsPolicy
      * Determine whether the user can update the model.
      *
      * @param User $user
-     * @param Contacts $contacts
+     * @param Contact $contacts
      * @return bool
      */
-    public function update(User $user, Contacts $contacts): bool
+    public function update(User $user, Contact $contacts): bool
     {
         return $user->role === 'user' && $user->id === $contacts->user_id;
     }
@@ -72,10 +67,10 @@ class ContactsPolicy
      * Determine whether the user can delete the model.
      *
      * @param User $user
-     * @param Contacts $contacts
+     * @param Contact $contacts
      * @return bool
      */
-    public function delete(User $user, Contacts $contacts): bool
+    public function delete(User $user, Contact $contacts): bool
     {
         return $user->role === 'user' && $user->id === $contacts->user_id;
     }
@@ -84,10 +79,10 @@ class ContactsPolicy
      * Determine whether the user can restore the model.
      *
      * @param User $user
-     * @param Contacts $contacts
+     * @param Contact $contacts
      * @return bool
      */
-    public function restore(User $user, Contacts $contacts): bool
+    public function restore(User $user, Contact $contacts): bool
     {
         return $user->role === 'user' && $user->id === $contacts->user_id;
     }
@@ -96,10 +91,10 @@ class ContactsPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param User $user
-     * @param Contacts $contacts
+     * @param Contact $contacts
      * @return bool
      */
-    public function forceDelete(User $user, Contacts $contacts): bool
+    public function forceDelete(User $user, Contact $contacts): bool
     {
         return $user->role === 'admin';
     }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreContacts;
-use App\Models\Contacts;
+use App\Models\Contact;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class ContactsController extends Controller
@@ -23,16 +24,18 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        if ($this->authorize('viewAny', Contacts::class)) {
+        if (Gate::allows('viewAll')) {
+            //$this->authorize('viewAll', Contact::class);
+            $contacts = Contact::with('user')->orderBy('name')->get();
+            return view('contacts.index', compact('contacts'));
+        }
+
+        $this->authorize('viewAny', Contact::class);
 //        QueryBuilder (no funciona con el slug)
 //        $query = DB::table('contacts')->where('user_id', Auth::id())->get();
 //        $contacts = $query->all();
 
-            $contacts = Contacts::where('user_id', Auth::id())->get();
-            return view('contacts.index', compact('contacts'));
-        }
-        $this->authorize('viewAll', Contacts::class);
-        $contacts = Contacts::with('user');
+        $contacts = Contact::where('user_id', Auth::id())->get();
         return view('contacts.index', compact('contacts'));
     }
 
@@ -44,7 +47,7 @@ class ContactsController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', Contacts::class);
+        $this->authorize('create', Contact::class);
 
         return view('contacts.create');
     }
@@ -59,7 +62,7 @@ class ContactsController extends Controller
     {
         $request['slug'] = Str::slug($request->name, '-');
 
-        $contact = new Contacts();
+        $contact = new Contact();
         $contact->name = $request->name;
         $contact->slug = $request->slug;
         $contact->birth_date = $request->birth_date;
@@ -77,11 +80,11 @@ class ContactsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Contacts $contact
+     * @param Contact $contact
      * @return Application|Factory|View
      * @throws AuthorizationException
      */
-    public function show(Contacts $contact)
+    public function show(Contact $contact)
     {
         $this->authorize('view', $contact);
 
@@ -91,11 +94,11 @@ class ContactsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Contacts $contact
+     * @param Contact $contact
      * @return Application|Factory|View
      * @throws AuthorizationException
      */
-    public function edit(Contacts $contact)
+    public function edit(Contact $contact)
     {
         $this->authorize('update', $contact);
 
@@ -106,11 +109,11 @@ class ContactsController extends Controller
      * Update the specified resource in storage.
      *
      * @param StoreContacts $request
-     * @param Contacts $contact
+     * @param Contact $contact
      * @return RedirectResponse
      * @throws AuthorizationException
      */
-    public function update(StoreContacts $request, Contacts $contact)
+    public function update(StoreContacts $request, Contact $contact)
     {
         $this->authorize('update', $contact);
 
@@ -121,11 +124,11 @@ class ContactsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Contacts $contact
+     * @param Contact $contact
      * @return RedirectResponse
      * @throws AuthorizationException
      */
-    public function destroy(Contacts $contact)
+    public function destroy(Contact $contact)
     {
         $this->authorize('delete', $contact);
 
