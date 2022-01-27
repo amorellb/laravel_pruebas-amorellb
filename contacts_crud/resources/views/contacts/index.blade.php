@@ -17,7 +17,7 @@
         </div>
 
 
-        <div class="w-full max-w-4xl mx-auto bg-white shadow-lg rounded border border-gray-200">
+        <div class="w-full max-w-6xl mx-auto bg-white shadow-lg rounded border border-gray-200">
             <div class="p-3">
                 <div class="overflow-x-auto">
                     <table class="table-auto w-full">

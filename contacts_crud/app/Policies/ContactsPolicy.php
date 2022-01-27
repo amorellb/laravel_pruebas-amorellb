@@ -48,7 +48,7 @@ class ContactsPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role === $user;
+        return $user->role === 'user';
     }
 
     /**

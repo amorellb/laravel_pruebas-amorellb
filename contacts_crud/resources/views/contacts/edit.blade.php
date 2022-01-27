@@ -38,18 +38,24 @@
         <br>
         <label for="country">Country: </label>
         <select class="border-2 border-solid border-gray-100 rounded-full px-2" name="country" id="country">
-            <option value="Spain" @if (old('country') === 'spain') selected @endif>Spain</option>
             <option value="England" @if (old('country') === 'england') selected @endif>England</option>
+            <option value="Spain" @if (old('country') === 'spain') selected @endif>Spain</option>
+            <option value="Italy" @if (old('country') === 'italy') selected @endif>Italy</option>
+            <option value="Germany" @if (old('country') === 'germany') selected @endif>Germany</option>
+            <option value="France" @if (old('country') === 'france') selected @endif>France</option>
         </select>
         <br>
         <label for="address"> Contact address:
-            <textarea class="border-2 border-solid border-gray-100 rounded-full px-2" name="address"
+            <textarea class="border-2 border-solid border-gray-100 rounded px-2" name="address"
                       placeholder="Address 123, street">
                 {{old('address', $contact->address)}}
             </textarea>
         </label><br>
         <label for="job_contact"> Job contact?:
-            <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio" name="job_contact" value="{{old('job_contact', $contact->job_contact)}}"/>
+            <br>
+            <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio" name="job_contact_true" value="true" checked/> True
+            <br>
+            <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio" name="job_contact_false" value="false" checked="checked"/> False
         </label><br>
         <button
             class="text-orange-400 no-underline border-solid border-2 border-orange-400 rounded p-1 px-5 ml-5 mt-5 hover:bg-orange-400 hover:text-white"

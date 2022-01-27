@@ -9,6 +9,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ContactsController extends Controller
@@ -17,6 +18,7 @@ class ContactsController extends Controller
      * Display a listing of the resource.
      *
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function index()
     {
@@ -30,6 +32,7 @@ class ContactsController extends Controller
      * Show the form for creating a new resource.
      *
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function create()
     {
