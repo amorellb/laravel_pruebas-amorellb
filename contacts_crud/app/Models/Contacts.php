@@ -11,7 +11,7 @@ class Contacts extends Model
     use HasFactory;
     use softDeletes;
 
-    public $table = 'agenda';
+    public $table = 'contacts';
 
     protected $fillable = ['name', 'slug', 'birth_date', 'email', 'phone',
         'country', 'address', 'job_contact', 'user_id'];

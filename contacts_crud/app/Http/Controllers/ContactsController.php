@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreContacts;
 use App\Models\Contacts;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 
 class ContactsController extends Controller
@@ -11,7 +16,7 @@ class ContactsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -24,7 +29,7 @@ class ContactsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -36,8 +41,8 @@ class ContactsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param StoreContacts $request
+     * @return RedirectResponse
      */
     public function store(StoreContacts $request)
     {
@@ -61,8 +66,9 @@ class ContactsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Contacts $contacts
-     * @return \Illuminate\Http\Response
+     * @param Contacts $contact
+     * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function show(Contacts $contact)
     {
@@ -74,8 +80,9 @@ class ContactsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Contacts $contacts
-     * @return \Illuminate\Http\Response
+     * @param Contacts $contact
+     * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function edit(Contacts $contact)
     {
@@ -87,9 +94,10 @@ class ContactsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Contacts $contacts
-     * @return \Illuminate\Http\Response
+     * @param StoreContacts $request
+     * @param Contacts $contact
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function update(StoreContacts $request, Contacts $contact)
     {
@@ -102,8 +110,9 @@ class ContactsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Contacts $contacts
-     * @return \Illuminate\Http\Response
+     * @param Contacts $contact
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function destroy(Contacts $contact)
     {
