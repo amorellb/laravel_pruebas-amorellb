@@ -23,7 +23,7 @@ class ContactsPolicy
      * @param User $user
      * @return bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->role === 'user' || $user->role === 'visitor';
     }
@@ -35,7 +35,7 @@ class ContactsPolicy
      * @param Contacts $contacts
      * @return bool
      */
-    public function view(User $user, Contacts $contacts)
+    public function view(User $user, Contacts $contacts): bool
     {
         return $user->role === 'user' && $user->id === $contacts->user_id;
     }
@@ -46,7 +46,7 @@ class ContactsPolicy
      * @param User $user
      * @return bool
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->role === $user;
     }
@@ -58,7 +58,7 @@ class ContactsPolicy
      * @param Contacts $contacts
      * @return bool
      */
-    public function update(User $user, Contacts $contacts)
+    public function update(User $user, Contacts $contacts): bool
     {
         return $user->role === 'user' && $user->id === $contacts->user_id;
     }
@@ -70,7 +70,7 @@ class ContactsPolicy
      * @param Contacts $contacts
      * @return bool
      */
-    public function delete(User $user, Contacts $contacts)
+    public function delete(User $user, Contacts $contacts): bool
     {
         return $user->role === 'user' && $user->id === $contacts->user_id;
     }
@@ -82,7 +82,7 @@ class ContactsPolicy
      * @param Contacts $contacts
      * @return bool
      */
-    public function restore(User $user, Contacts $contacts)
+    public function restore(User $user, Contacts $contacts): bool
     {
         return $user->role === 'user' && $user->id === $contacts->user_id;
     }
@@ -94,7 +94,7 @@ class ContactsPolicy
      * @param Contacts $contacts
      * @return bool
      */
-    public function forceDelete(User $user, Contacts $contacts)
+    public function forceDelete(User $user, Contacts $contacts): bool
     {
         return $user->role === 'admin';
     }
