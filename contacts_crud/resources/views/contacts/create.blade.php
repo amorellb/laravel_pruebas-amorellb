@@ -52,11 +52,13 @@
         </label>
         <br>
         <br>
-        <label for="job_contact"> Job contact?:
+        <label for="job_contact_true"> Job contact?:
             <br>
-            <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio" name="job_contact_true" value="true" checked/> True
+            <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio" name="job_contact_yes" value="yes" checked/> Yes
+        </label>
+        <label for="job_contact_false">
             <br>
-            <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio" name="job_contact_false" value="false" checked="checked"/> False
+            <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio" name="job_contact_yes" value="no" checked="checked"/> No
         </label>
         <br>
         <br>
@@ -65,7 +67,7 @@
         </label>
         <br>
         <button
-            class="text-green-400 no-underline border-solid border-2 border-green-400 rounded p-1 px-5 ml-5 mt-5 hover:bg-green- 400 hover:text-white"
+            class="text-green-400 no-underline border-solid border-2 border-green-400 rounded p-1 px-5 ml-5 mt-5 hover:bg-green-400 hover:text-white"
             type="submit" name="add">➕ Add Contact
         </button>
     </form>

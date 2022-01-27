@@ -17,6 +17,11 @@ class ContactsPolicy
         }
     }
 
+    public function viewAll(User $user): bool
+    {
+        return $user->role === 'admin';
+    }
+
     /**
      * Determine whether the user can view any models.
      *

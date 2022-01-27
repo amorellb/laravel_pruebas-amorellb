@@ -17,12 +17,19 @@
         </div>
 
 
-        <div class="w-full max-w-6xl mx-auto bg-white shadow-lg rounded border border-gray-200">
+        <div class="w-full max-w-7xl mx-auto bg-white shadow-lg rounded border border-gray-200">
             <div class="p-3">
                 <div class="overflow-x-auto">
                     <table class="table-auto w-full">
                         <thead class="text-xs font-semibold uppercase text-gray-400">
                         <tr>
+                            @auth
+                                @can('viewAll', \App\Models\Contacts::class)
+                                    <th class="p-2 whitespace-nowrap">
+                                        <div class="font-semibold text-left">User Name</div>
+                                    </th>
+                                @endcan
+                            @endauth
                             <th class="p-2 whitespace-nowrap">
                                 <div class="font-semibold text-left">Name</div>
                             </th>
@@ -49,6 +56,11 @@
                         <tbody class="text-sm divide-y divide-gray-100">
                         @foreach ($contacts as $contact)
                             <tr>
+                                @auth
+                                    @can('viewAll', \App\Models\Contacts::class)
+                                        <td class="p-2 whitespace-nowrap">{{ $contact->user->name }}</td>
+                                    @endcan
+                                @endauth
                                 <td class="p-2 whitespace-nowrap">{{ $contact->name }}</td>
                                 <td class="p-2 whitespace-nowrap">{{ $contact->birth_date }}</td>
                                 <td class="p-2 whitespace-nowrap">{{ $contact->email }}</td>

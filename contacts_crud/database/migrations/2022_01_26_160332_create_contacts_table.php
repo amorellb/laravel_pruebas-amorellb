@@ -25,7 +25,7 @@ class CreateContactsTable extends Migration
             $table->integer('phone')->unique();
             $table->string('country')->nullable();                // select
             $table->string('address')->nullable();                // type textarea
-            $table->boolean('job_contact')->nullable();           // type radiobutton
+            $table->string('job_contact')->nullable();           // type radiobutton
         });
 
         Schema::table('contacts', function (Blueprint $table) {

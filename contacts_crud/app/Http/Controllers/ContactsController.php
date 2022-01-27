@@ -23,12 +23,16 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', Contacts::class);
-
+        if ($this->authorize('viewAny', Contacts::class)) {
 //        QueryBuilder (no funciona con el slug)
 //        $query = DB::table('contacts')->where('user_id', Auth::id())->get();
 //        $contacts = $query->all();
-        $contacts = Contacts::where('user_id', Auth::id())->get();
+
+            $contacts = Contacts::where('user_id', Auth::id())->get();
+            return view('contacts.index', compact('contacts'));
+        }
+        $this->authorize('viewAll', Contacts::class);
+        $contacts = Contacts::with('user');
         return view('contacts.index', compact('contacts'));
     }
 
