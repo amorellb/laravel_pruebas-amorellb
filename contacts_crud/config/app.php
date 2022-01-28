@@ -81,6 +81,14 @@ return [
     */
 
     'locale' => 'en',
+//    'available_locales' => [
+//        'English' => 'en',
+//        'Spanish' => 'es',
+//        'Catalan' => 'ca',
+//        'Italian' => 'it',
+//        'German' => 'de',
+//        'French' => 'fr',
+//    ],
 
     /*
     |--------------------------------------------------------------------------

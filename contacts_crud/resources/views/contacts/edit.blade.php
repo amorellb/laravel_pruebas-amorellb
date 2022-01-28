@@ -43,7 +43,7 @@
             <br>
             <br>
             <label for="phone"> Contact phone:
-                <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="text" name="phone"
+                <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="number" name="phone"
                        value="{{old('phone', $contact->phone)}}" placeholder="654321234"/>
             </label>
             @error('phone')
