@@ -35,12 +35,12 @@
                                    href="#" role="button"
                                    data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @if (app()->getLocale() === 'en'){{ __("Language") }}{{"🇬🇧"}} @endif
-                                    @if (app()->getLocale() === 'es'){{ __("Language") }}{{"🇪🇸"}} @endif
-                                    @if (app()->getLocale() === 'ca'){{ __("Language") }}{{"🇪🇸🤷"}} @endif
-                                    @if (app()->getLocale() === 'it'){{ __("Language") }}{{"🇮🇹"}} @endif
-                                    @if (app()->getLocale() === 'de'){{ __("Language") }}{{"🇩🇪"}} @endif
-                                    @if (app()->getLocale() === 'fr'){{ __("Language") }}{{"🇫🇷"}} @endif
+                                    @if (app()->getLocale() === 'en'){{"🇬🇧 "}}{{ __("Language") }}@endif
+                                    @if (app()->getLocale() === 'es'){{"🇪🇸 "}}{{ __("Language") }}@endif
+                                    @if (app()->getLocale() === 'ca'){{"🇪🇸🤷 "}}{{ __("Language") }}@endif
+                                    @if (app()->getLocale() === 'it'){{"🇮🇹 "}}{{ __("Language") }}@endif
+                                    @if (app()->getLocale() === 'de'){{"🇩🇪 "}}{{ __("Language") }}@endif
+                                    @if (app()->getLocale() === 'fr'){{"🇫🇷 "}}{{ __("Language") }}@endif
                                 </a>
                             </div>
                         </div>
