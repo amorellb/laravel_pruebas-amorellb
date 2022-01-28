@@ -2,7 +2,7 @@
 
 <main class="mt-5">
     <div class="w-full max-w-xl mx-auto bg-white shadow-lg rounded border border-gray-200">
-        <h2 class="text-xl m-5">Añadir nuevos contactos a la Agenda</h2>
+        <h2 class="text-xl m-5">Add new contacts to your Contacts list</h2>
         @if ($errors->any())
             <div class="mx-auto max-w-md border-2 border-solid border-red-600 bg-red-300 rounded text-center">
                 <strong>Whoops!</strong> There were some problems with your input.<br><br>
