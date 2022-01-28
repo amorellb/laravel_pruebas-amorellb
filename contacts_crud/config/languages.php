@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'en' => ['English', 'en_US'],
+    'en' => ['English', 'en'],
     'es' => ['Spanish', 'es'],
     'ca' => ['Catalan', 'ca'],
     'it' => ['Italian', 'it'],

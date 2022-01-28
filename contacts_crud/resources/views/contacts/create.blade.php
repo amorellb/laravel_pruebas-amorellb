@@ -2,10 +2,10 @@
 
 <main class="mt-5">
     <div class="w-full max-w-xl mx-auto bg-white shadow-lg rounded border border-gray-200">
-        <h2 class="text-xl m-5">@lang("Add new contacts to your Contacts list")</h2>
+        <h2 class="text-xl m-5">{{ __("Add new contacts to your Contacts list") }}</h2>
         @if ($errors->any())
             <div class="mx-auto max-w-md border-2 border-solid border-red-600 bg-red-300 rounded text-center">
-                <strong>Whoops!</strong>{{ __("There were some problems with your input.") }}<br><br>
+                <strong>Whoops! </strong>{{ __("There were some problems with your input.") }}<br><br>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -68,15 +68,12 @@
             </label>
             <br>
             <br>
-            <label for="job_contact_true"> {{ __("Job contact") }}?:
+            <label for="job_contact"> @lang("Job contact")?:<br>
+                <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio"
+                       name="job_contact" value="yes" {{ old('job_contact') === 'yes' ? 'checked='.'"checked"' : '' }}/> @lang("Yes")
                 <br>
                 <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio"
-                       name="job_contact_yes" value="yes" checked/> {{ __("Yes") }}
-            </label>
-            <label for="job_contact_false">
-                <br>
-                <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio"
-                       name="job_contact_yes" value="no" checked/> {{ __("No") }}
+                       name="job_contact" value="no" {{ old('job_contact') === 'no' ? 'checked='.'"checked"' : '' }}/> @lang("No")
             </label>
             <br>
             <br>
