@@ -16,7 +16,6 @@
             @endauth
         </div>
 
-
         <div class="w-full max-w-8xl mx-auto bg-white shadow-lg rounded border border-gray-200">
             <div class="p-3">
                 <div class="overflow-x-auto">
@@ -51,6 +50,13 @@
                             <th class="p-2 whitespace-nowrap">
                                 <div class="font-semibold text-left">@lang("Job contact")?</div>
                             </th>
+                            @auth
+                                @can('viewAllAndDeleted', \App\Models\Contact::class)
+                                    <th class="p-2 whitespace-nowrap">
+                                        <div class="font-semibold text-left">@lang("Deleted at")</div>
+                                    </th>
+                                @endcan
+                            @endauth
                         </tr>
                         </thead>
                         <tbody class="text-sm divide-y divide-gray-100">
@@ -69,6 +75,11 @@
                                 <td class="p-2 whitespace-nowrap">{{ $contact->country }}</td>
                                 <td class="p-2 whitespace-nowrap">{{ $contact->address }}</td>
                                 <td class="p-2 whitespace-nowrap">{{ $contact->job_contact }}</td>
+                                @auth
+                                    @can('viewAllAndDeleted', \App\Models\Contact::class)
+                                        <td class="p-2 whitespace-nowrap">{{ $contact->deleted_at }}</td>
+                                    @endcan
+                                @endauth
                                 <td class="p-2 whitespace-nowrap">
                                     <form action="{{ route('contacts.destroy', $contact) }}" method="POST">
                                         @auth

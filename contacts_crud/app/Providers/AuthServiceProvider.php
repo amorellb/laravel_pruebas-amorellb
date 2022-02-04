@@ -30,7 +30,11 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('viewAll', function (User $user) {
-            return $user->role === 'admin';
+            return $user->role === 'super' || $user->role === 'admin';
+        });
+
+        Gate::define('viewAllAndDeleted', function (User $user) {
+            return $user->role === 'super';
         });
     }
 }

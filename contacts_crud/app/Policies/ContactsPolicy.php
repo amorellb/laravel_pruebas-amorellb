@@ -12,7 +12,7 @@ class ContactsPolicy
 
     public function before($user, $ability)
     {
-        if ($user->role === 'admin') {
+        if ($user->role === 'super' || $user->role === 'admin') {
             return true;
         }
     }

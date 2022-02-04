@@ -24,13 +24,22 @@ class ContactsController extends Controller
      */
     public function index()
     {
+        if (Gate::allows('viewAllAndDeleted')) {
+//            QueryBuilder (da problemas con stdClass)
+//            $query = DB::table('contacts')->where('user_id', Auth::id())->get();
+//            $contacts = $query->all();
+//            Eloquent
+            $contacts = Contact::with('user')->onlyTrashed()->orderBy('name')->get();
+            return view('contacts.index', compact('contacts'));
+        }
+
         if (Gate::allows('viewAll')) {
             $contacts = Contact::with('user')->orderBy('name')->get();
             return view('contacts.index', compact('contacts'));
         }
 
         $this->authorize('viewAny', Contact::class);
-//        QueryBuilder (no funciona con el slug)
+//        QueryBuilder (da problemas con stdClass)
 //        $query = DB::table('contacts')->where('user_id', Auth::id())->get();
 //        $contacts = $query->all();
 
@@ -57,7 +66,7 @@ class ContactsController extends Controller
      * @param StoreContacts $request
      * @return RedirectResponse
      */
-    public function store(StoreContacts $request)
+    public function store(StoreContacts $request): RedirectResponse
     {
         $request['slug'] = Str::slug($request->name, '-');
 
@@ -72,6 +81,11 @@ class ContactsController extends Controller
         $contact->job_contact = $request->job_contact;
         $contact->user_id = $request->user()->id;
         $contact->save();
+
+//        $contact = Contact::create($request->all());
+//        $contact['slug'] = Str::slug($request->name, '-');
+//        $contact->user_id=Auth::id();
+//        $contact->save();
 
         return redirect()->route('contacts.index');
     }
@@ -112,7 +126,7 @@ class ContactsController extends Controller
      * @return RedirectResponse
      * @throws AuthorizationException
      */
-    public function update(StoreContacts $request, Contact $contact)
+    public function update(StoreContacts $request, Contact $contact): RedirectResponse
     {
         $this->authorize('update', $contact);
 
@@ -127,7 +141,7 @@ class ContactsController extends Controller
      * @return RedirectResponse
      * @throws AuthorizationException
      */
-    public function destroy(Contact $contact)
+    public function destroy(Contact $contact): RedirectResponse
     {
         $this->authorize('delete', $contact);
 

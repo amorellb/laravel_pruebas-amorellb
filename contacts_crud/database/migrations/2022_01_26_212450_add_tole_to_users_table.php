@@ -14,7 +14,7 @@ class AddToleToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['admin', 'user', 'visitor'])
+            $table->enum('role', ['super', 'admin', 'user', 'visitor'])
                 ->default('user')->after('id');
         });
     }
