@@ -33,10 +33,15 @@
             <br>
             <br>
             <label for="email"> {{ __("Contact email") }}:
-                <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="text" name="email"
+                <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="email" name="email"
                        value="{{old('email')}}"
                        placeholder="bernat@email.com"/>
             </label>
+            @error('email')
+            <br>
+            <small>*{{$message}}</small>
+            <br>
+            @enderror
             <br>
             <br>
             <label for="phone"> {{ __("Contact phone") }}:
@@ -74,6 +79,11 @@
                 <br>
                 <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="radio"
                        name="job_contact" value="no" {{ old('job_contact') === 'no' ? 'checked='.'"checked"' : '' }}/> @lang("No")
+            </label>
+            <br>
+            <br>
+            <label for="file">
+                <input type="file" name="file"/>
             </label>
             <br>
             <br>

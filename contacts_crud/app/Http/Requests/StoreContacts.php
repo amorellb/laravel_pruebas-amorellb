@@ -25,7 +25,13 @@ class StoreContacts extends FormRequest
     {
         return [
             'name' => 'required',
-            'phone' => 'required|size:9'
+            'phone' => 'required|size:9',
+            'email' => 'email',
+            'image' => [
+                'required',
+                'image',
+                'max:2000'
+            ] // jpeg, png, bmp, svg o webp
         ];
     }
 }

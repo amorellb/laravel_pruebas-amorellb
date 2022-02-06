@@ -37,9 +37,14 @@
             <br>
             <br>
             <label for="email"> @lang("Contact email"):
-                <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="text" name="email"
+                <input class="border-2 border-solid border-gray-100 rounded-full px-2" type="email" name="email"
                        value="{{old('email', $contact->email)}}" placeholder="bernat@email.com"/>
             </label>
+            @error('email')
+            <br>
+            <small>*{{$message}}</small>
+            <br>
+            @enderror
             <br>
             <br>
             <label for="phone"> @lang("Contact phone"):

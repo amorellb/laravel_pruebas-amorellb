@@ -25,7 +25,7 @@ class ContactsController extends Controller
     public function index()
     {
         if (Gate::allows('viewAllAndDeleted')) {
-//            QueryBuilder (da problemas con stdClass)
+//            QueryBuilder
 //            $query = DB::table('contacts')->where('user_id', Auth::id())->get();
 //            $contacts = $query->all();
 //            Eloquent
@@ -39,7 +39,7 @@ class ContactsController extends Controller
         }
 
         $this->authorize('viewAny', Contact::class);
-//        QueryBuilder (da problemas con stdClass)
+//        QueryBuilder
 //        $query = DB::table('contacts')->where('user_id', Auth::id())->get();
 //        $contacts = $query->all();
 
@@ -68,7 +68,41 @@ class ContactsController extends Controller
      */
     public function store(StoreContacts $request): RedirectResponse
     {
+//        Raw
+//        $request['slug'] = Str::slug($request->name, '-');
+//
+//        $name = $request->name;
+//        $slug = $request->slug;
+//        $birth_date = $request->birth_date;
+//        $email = $request->email;
+//        $phone = $request->phone;
+//        $country = $request->country;
+//        $address = $request->address;
+//        $job_contact = $request->job_contact;
+//        $user_id = $request->user()->id;
+//
+//        DB::insert("insert into contacts (name, slug, birth_date, email, phone, country, address, job_contact, user_id)
+//values ($name, $slug, $birth_date, $email, $phone, $country, $address, $job_contact, $user_id)");
+//        -----------------------
+
+//        QueryBuilder
+//        $request['slug'] = Str::slug($request->name, '-');
+//        DB::table('contacts')->insert([
+//            'name' => $request->name,
+//            'slug' => $request->slug,
+//            'birth_date' => $request->birth_date,
+//            'email' => $request->email,
+//            'phone' => $request->phone,
+//            'country' => $request->country,
+//            'address' => $request->address,
+//            'job_contact' => $request->job_contact,
+//            'user_id' => $request->user()->id
+//        ]);
+//        ------------------------
+
+//        Eloquent
         $request['slug'] = Str::slug($request->name, '-');
+        $imgURL = $request->file('file')->storeAS('contacts_img', $request->file->getClientOriginalName());
 
         $contact = new Contact();
         $contact->name = $request->name;
@@ -80,13 +114,17 @@ class ContactsController extends Controller
         $contact->address = $request->address;
         $contact->job_contact = $request->job_contact;
         $contact->user_id = $request->user()->id;
+        $contact->image = $imgURL;
         $contact->save();
 
+
+
+//        Eloquent
 //        $contact = Contact::create($request->all());
 //        $contact['slug'] = Str::slug($request->name, '-');
 //        $contact->user_id=Auth::id();
 //        $contact->save();
-
+//
         return redirect()->route('contacts.index');
     }
 
