@@ -4,7 +4,7 @@
     <div class="w-full max-w-xl mx-auto bg-white shadow-lg rounded border border-gray-200">
         <div>
             @if($contact->image)
-                <img src="/storage/{{$contact->image}}" alt="{{$contact->name}}">
+                <img src=" {{ asset('storage/'. $contact->image)}}" alt="{{$contact->name}}">
             @endif
         </div>
         <div class="text-center">
