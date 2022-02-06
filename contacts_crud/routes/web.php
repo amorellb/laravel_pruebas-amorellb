@@ -17,4 +17,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/set_language/{lang}', [App\Http\Controllers\Controller::class, 'set_language'])->name('set_language');
 
+Route::fallback(function () {
+    return redirect('/');
+});
+
 require __DIR__ . '/auth.php';
